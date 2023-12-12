@@ -1,41 +1,35 @@
 pipeline {
-    agent any
-    
+    agent any 
     stages {
-        stage('Checkout') {
+        stage('Static Analysis') {
             steps {
-                script {
-                    git 'https://github.com/sonadukane18/Pipeline_4_JavaApp.git'
-                }
+                echo 'Run the static analysis to the code' 
             }
         }
-        
-        stage('Build') {
+        stage('Compile') {
             steps {
-                script {
-                    bat(script: 'javac Main.java', returnStatus: true) // Use 'bat' on Windows
-                    
-                }
+                echo 'Compile the source code' 
             }
         }
-        
-        stage('Test') {
+        stage('Security Check') {
             steps {
-                script {
-                    bat(script: 'java Main', returnStatus: true) // Use 'bat' on Windows
-                    
-                }
+                echo 'Run the security check against the application' 
             }
         }
-    }
-    
-    post {
-        success {
-            echo 'Build successful!'
+        stage('Run Unit Tests') {
+            steps {
+                echo 'Run unit tests from the source code' 
+            }
         }
-        
-        failure {
-            echo 'Build failed!'
+        stage('Run Integration Tests') {
+            steps {
+                echo 'Run only crucial integration tests from the source code' 
+            }
+        }
+        stage('Publish Artifacts') {
+            steps {
+                echo 'Save the assemblies generated from the compilation' 
+            }
         }
     }
 }
