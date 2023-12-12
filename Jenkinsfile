@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    git 'https://github.com/himanshuhsk01/pipeline.git'
+                    git 'https://github.com/sonadukane18/Pipeline_4_JavaApp.git'
                 }
             }
         }
